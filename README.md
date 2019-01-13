@@ -2,7 +2,6 @@
 
 This repository is part of a solution for the [informatiCup 2019](http://www.informaticup.de) competition
 hosted by the [Gesellschaft für Informatik](https://gi.de).
-
 The [task](https://github.com/InformatiCup/InformatiCup2019/blob/master/Irrbilder.pdf) 
 of the 14th informatiCup is to generate [adversarial examples](https://blog.openai.com/adversarial-example-research/) 
 for a given neural network based classification API.
@@ -16,7 +15,18 @@ This implementation uses [CPPNs](https://en.wikipedia.org/wiki/Compositional_pat
 (Compositional-Pattern-Producing-Networks) optimized with evolutionary strategies.
 You can find a nice blog post explaining CPPNs [here](http://blog.otoro.net/2016/03/25/generating-abstract-patterns-with-tensorflow/).
 
+## Example Results
+Adversarials (hover to see label):
 
+![aaaa](./examples/adversarial_Ausschlielich_geradeaus_0.9833.png "Ausschließlich geradeaus")
+
+
+Visualized optimization process:
+
+![](./examples/convergence_Ausschlielich_geradeaus_0.9833.gif "Ausschließlich geradeaus")
+
+
+See `examples/` for more.
 
 ## Usage
 
@@ -32,21 +42,21 @@ cd InformatiCup2019-CPPN
 This repository includes a conda environment in `environment.yml` as well as a pip environment in `requirements.txt`.
 To create a conda environment from this file, simply run
 ```bash
-conda env blabla
+conda env create -f environment.yml
 ```
 or install the requirements via pip using
 ```bash
-pip blabla
+pip install -r requirements.txt
 ```
 
 #### Prerequisites
-Put your API key in the `API_config.ini file`. (Don't worry, this file is listed in the `.gitignore` to prevent you from commiting your API key)
+Put your API key in the `API_config.ini file`.
 ```ini
 [API]
 URL = https://phinau.de/trasi
 KEY = <your-api-key>
 ```
-#### Generating adversarials
+#### Generating Adversarial Images
 * You can generate single adversarial images by running:
     ```bash
     python generate_adversarial.py --input_img <some-image-file> --output_dir <some-directory>
