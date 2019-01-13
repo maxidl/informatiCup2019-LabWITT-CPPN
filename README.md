@@ -16,13 +16,35 @@ This implementation uses [CPPNs](https://en.wikipedia.org/wiki/Compositional_pat
 You can find a nice blog post explaining CPPNs [here](http://blog.otoro.net/2016/03/25/generating-abstract-patterns-with-tensorflow/).
 
 ## Example Results
-Adversarials (hover to see label):
+Some Adversarial Images (hover to see label, all >95% confidence):
 
-![aaaa](./examples/adversarial_Ausschlielich_geradeaus_0.9833.png "Ausschließlich geradeaus")
+![](./examples/adversarial_Zulassige_Hochstgeschwindigkeit_(100)_0.9755.png "Zulässige Höchstgeschwindigkeit (100)")
+![](./examples/adversarial_Zulassige_Hochstgeschwindigkeit_(20)_0.9725.png "Zulässige Höchstgeschwindigkeit (20)")
+![](./examples/adversarial_Vorfahrt_0.9606.png "Vorfahrt")
+![](./examples/adversarial_Gefahrenstelle_0.9862.png "Gefahrenstelle")
+![](./examples/adversarial_Fuganger_0.9813.png "Fußgänger")
+![](./examples/adversarial_Fahrradfahrer_0.9505.png "Fahrradfahrer")
+![](./examples/adversarial_Ende_der_Geschwindigkeitsbegrenzung_(80)_0.9725.png "Ende der Geschwindigkeitsbegrenzung (80)")
+![](./examples/adversarial_Ende_aller_Streckenverbote_0.9538.png "Ende aller Streckenverbote")
+![](./examples/adversarial_Einmalige_Vorfahrt_0.9768.png "Einmalige Vorfahrt")
+![](./examples/adversarial_Baustelle_0.9746.png "Baustelle")
+![](./examples/adversarial_Ausschlielich_rechts_0.9539.png "Ausschließlich rechts")
+![](./examples/adversarial_Ausschlielich_geradeaus_0.9833.png "Ausschließlich geradeaus")
 
 
 Visualized optimization process:
 
+![](./examples/convergence_Zulassige_Hochstgeschwindigkeit_(100)_0.9755.gif "Zulässige Höchstgeschwindigkeit (100)")
+![](./examples/convergence_Zulassige_Hochstgeschwindigkeit_(20)_0.9725.gif "Zulässige Höchstgeschwindigkeit (20)")
+![](./examples/convergence_Vorfahrt_0.9606.gif "Vorfahrt")
+![](./examples/convergence_Gefahrenstelle_0.9862.gif "Gefahrenstelle")
+![](./examples/convergence_Fuganger_0.9813.gif "Fußgänger")
+![](./examples/convergence_Fahrradfahrer_0.9505.gif "Fahrradfahrer")
+![](./examples/convergence_Ende_der_Geschwindigkeitsbegrenzung_(80)_0.9725.gif "Ende der Geschwindigkeitsbegrenzung (80)")
+![](./examples/convergence_Ende_aller_Streckenverbote_0.9538.gif "Ende aller Streckenverbote")
+![](./examples/convergence_Einmalige_Vorfahrt_0.9768.gif "Einmalige Vorfahrt")
+![](./examples/convergence_Baustelle_0.9746.gif "Baustelle")
+![](./examples/convergence_Ausschlielich_rechts_0.9539.gif "Ausschließlich rechts")
 ![](./examples/convergence_Ausschlielich_geradeaus_0.9833.gif "Ausschließlich geradeaus")
 
 
