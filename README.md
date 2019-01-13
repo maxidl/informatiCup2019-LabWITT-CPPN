@@ -100,6 +100,8 @@ KEY = <your-api-key>
     |--high_res|False|False|Output the adversarial image in high resolution (2000 x 2000) as well as in standard resolution.|
     |--max_queries|False|1000|The maximum number of API queries.|
     |--init|False|False|Use the input image to find a good initial CPPN config (e.g. net depth). Still in experimental status.|
+    |--no_gif|False|False|Prevent the output of a `.gif` visualizing the optimization process|
+    |--random_seed|False|None|Provide a random seed for reproducible results|
 
 * You can run the `run.sh` script to run the program once for each class in the training 
 set of the [GTSRB dataset](http://benchmark.ini.rub.de/), i.e. the images contained in `test_images/`. Even though being clearly identifiable by humans, some of those 
