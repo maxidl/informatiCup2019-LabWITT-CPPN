@@ -20,7 +20,6 @@ Some Adversarial Images (hover to see the label, all >95% confidence):
 
 ![](./examples/adversarial_Ende_aller_Streckenverbote_0.9562.png "Ende aller Streckenverbote")
 ![](./examples/adversarial_Doppelkurve_(zunachst_links)_0.9652.png "Doppelkurve (zunächst links)")
-![](./examples/adversarial_Zulassige_Hochstgeschwindigkeit_(100)_0.9755.png "Zulässige Höchstgeschwindigkeit (100)")
 ![](./examples/adversarial_Zulassige_Hochstgeschwindigkeit_(20)_0.9725.png "Zulässige Höchstgeschwindigkeit (20)")
 ![](./examples/adversarial_Vorfahrt_0.9606.png "Vorfahrt")
 ![](./examples/adversarial_Gefahrenstelle_0.9862.png "Gefahrenstelle")
@@ -38,7 +37,6 @@ Visualized optimization process:
 
 ![](./examples/convergence_Ende_aller_Streckenverbote_0.9562.gif "Ende aller Streckenverbote")
 ![](./examples/convergence_Doppelkurve_(zunachst_links)_0.9652.gif "Doppelkurve (zunächst links)")
-![](./examples/convergence_Zulassige_Hochstgeschwindigkeit_(100)_0.9755.gif "Zulässige Höchstgeschwindigkeit (100)")
 ![](./examples/convergence_Zulassige_Hochstgeschwindigkeit_(20)_0.9725.gif "Zulässige Höchstgeschwindigkeit (20)")
 ![](./examples/convergence_Vorfahrt_0.9606.gif "Vorfahrt")
 ![](./examples/convergence_Gefahrenstelle_0.9862.gif "Gefahrenstelle")
