@@ -1,4 +1,4 @@
-# InformatiCup2019-CPPN
+# InformatiCup2019-LabWITT-CPPN
 
 This repository is part of a solution for the [informatiCup 2019](http://www.informaticup.de) competition
 hosted by the [Gesellschaft für Informatik](https://gi.de).
