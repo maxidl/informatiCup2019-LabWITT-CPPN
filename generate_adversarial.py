@@ -24,7 +24,11 @@ def parse_args():
     parser.add_argument('--max_queries', required=False, default=1000, type=int,
                         help='Maximum number of API queries before aborting.')
     parser.add_argument('--init', required=False, default=False, action='store_true',
-                        help='Initialize the CPPN from the input image.')
+                        help='Initialize the CPPN from the input image. Still in experimental status.')
+    parser.add_argument('--random_seed', required=False, default=None, type=int,
+                        help='Provide a random seed for reproducible results.')
+    parser.add_argument('--no_gif', required=False, action='store_true', default=False,
+                        help='Disable optimization process .gif output.')
     args = parser.parse_args()
     return args
 
@@ -161,11 +165,11 @@ def generate_adversarial(target_class: str, target_conf: float = 0.95, target_im
 
 
 def main():
-    # fixed random seeds for reproducibility
-    np.random.seed(42)
-    torch.random.manual_seed(42)
-
     args = parse_args()
+    if args.random_seed is not None:
+        # fixed random seeds for reproducibility
+        np.random.seed(args.random_seed)
+        torch.random.manual_seed(args.random_seed)
 
     # infer target label from image
     input_img = load_image(args.input_img, size=64)
@@ -173,6 +177,8 @@ def main():
     labels, confidences = send_query(input_img)
     target_idx = np.argmax(confidences)
     target_class = labels[target_idx]
+
+    # ask user if he wants to continue
     print(f'Inferred label: {target_class}, confidence of {np.round(confidences[target_idx], 3)}')
     if not query_yes_no('Continue ?'):
         print('Please choose an input image which the API classifies as your target class. ')
@@ -195,7 +201,7 @@ def main():
 
         if conf < args.target_conf:
             print(f'Failed to generate an adversarial image after {args.max_queries} queries.')
-            write_to_log('log.txt', f'{target_class}\t{conf}\t{num_queries}\t{args.color}\t{args.init}')
+            # write_to_log('log.tsv', f'{target_class}\t{conf}\t{num_queries}\t{args.color}\t{args.init}')
             sys.exit(0)
         print(f'Found an adversarial image with > {args.target_conf} API confidence after {num_queries} queries.')
 
@@ -209,12 +215,12 @@ def main():
             cppn.set_img_size(2000)
             adversarial_high_res = cppn.render_image()
             save_image(adversarial_fname + '_HD.png', adversarial_high_res)
-
         # save convergence gif
-        conv_gif_fname = str(output_dir / f'convergence_{clean_filename(target_class)}_{conf}.gif')
-        save_gif_from_images(conv_gif_fname, conv_images)
+        if not args.no_gif:
+            conv_gif_fname = str(output_dir / f'convergence_{clean_filename(target_class)}_{conf}.gif')
+            save_gif_from_images(conv_gif_fname, conv_images)
 
-        write_to_log('log.txt', f'{target_class}\t{conf}\t{num_queries}\t{args.color}\t{args.init}')
+        # write_to_log('log.tsv', f'{target_class}\t{conf}\t{num_queries}\t{args.color}\t{args.init}')
         print('Finished.')
 
 
