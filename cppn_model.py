@@ -60,12 +60,7 @@ class CPPN(nn.Module):
     """
     _scale = 0.1
 
-    # net_depths = [2, 4, 6, 8, 10, 12, 14, 16]
-    # net_sizes = [8, 12, 16, 24, 32]
-    # net_depths = [12]
-    # net_sizes = [32]
     net_depths = [3, 4, 5, 6, 8, 12, 16, 20, 24]
-    # net_depths = [8, 12, 16, 20, 24]
     net_sizes = [32]
     combinations = list(itertools.product(net_depths, net_sizes))
 
@@ -87,9 +82,9 @@ class CPPN(nn.Module):
         self.color = color
         self.input_tensor = self.__create_cppn_input()
 
-        self.initialize_net()
+        self.__initialize_net()
 
-    def initialize_net(self):
+    def __initialize_net(self):
         if not self.net_size:
             self.net_size = CPPN.combinations[self.param_idx][1]
         if not self.net_depth:
@@ -122,17 +117,33 @@ class CPPN(nn.Module):
             if isinstance(m, nn.Linear):
                 nn.init.uniform_(m.weight, a=-1, b=1)
 
-    def reset(self, reset_depth=True, reset_size=True):
+    def reset(self, reset_depth: bool = True, reset_size: bool = True) -> None:
+        """
+        Reinitializes this CPPN.
+
+        Args:
+            reset_depth: Reset the depth of this CPPN
+            reset_size:  Reset the size of this CPPN
+
+        Returns:
+            None
+        """
         if reset_depth:
             self.net_depth = None
         if reset_size:
             self.net_size = None
-        self.initialize_net()
+        self.__initialize_net()
 
     def forward(self, x):
         return self.net(x)
 
-    def render_image(self):
+    def render_image(self) -> np.array:
+        """
+        Renders the image composed of this CPPNs outputs
+
+        Returns:
+            np.array: the image created from this CPPN
+        """
         image = self(self.input_tensor).data.numpy()
         if self.color:
             image = image.reshape(self.img_size, self.img_size, 3)
@@ -140,14 +151,20 @@ class CPPN(nn.Module):
             image = image.reshape(self.img_size, self.img_size)
         return image
 
-    def get_weight_shapes(self):
+    def __get_weight_shapes(self):
         return [W.detach().numpy().shape for W in list(self.parameters())]
 
-    def get_flat_weight_shapes(self):
-        shapes = self.get_weight_shapes()
+    def __get_flat_weight_shapes(self):
+        shapes = self.__get_weight_shapes()
         return [np.prod(s) for s in shapes]
 
     def get_weights(self):
+        """
+        Returns the weights of this CPPN as an flattened array
+
+        Returns:
+            np.array: the weights of this CPPN
+        """
         weights = list(self.parameters())
         weights = [W.detach().numpy() for W in weights]
         shapes = [W.shape for W in weights]
@@ -156,14 +173,23 @@ class CPPN(nn.Module):
         weights = np.concatenate(weights)
         return weights
 
-    def set_weights(self, weights: np.array):
-        flat_shapes = self.get_flat_weight_shapes()
+    def set_weights(self, weights: np.array) -> None:
+        """
+        Sets the weights of this CPPN to the values in the given flat array
+
+        Args:
+            weights (np.array): the new weight values as a flat array
+
+        Returns:
+            None
+        """
+        flat_shapes = self.__get_flat_weight_shapes()
         if not weights.size == sum(flat_shapes):
             raise ValueError('cant reshape weights from flat to layer matrices')
 
         split_indices = [flat_shapes[i] + sum(flat_shapes[:i]) for i in range(len(flat_shapes))]
         weights = np.split(weights, split_indices)
-        shapes = self.get_weight_shapes()
+        shapes = self.__get_weight_shapes()
         weights = [np.reshape(W, s) for W, s in zip(weights, shapes)]
         i = 0
         for m in self.modules():
@@ -171,7 +197,16 @@ class CPPN(nn.Module):
                 m.weight = nn.Parameter(torch.from_numpy(weights[i]))
                 i += 1
 
-    def set_img_size(self, img_size):
+    def set_img_size(self, img_size: int) -> None:
+        """
+        Sets this CPPN image size to the given value.
+
+        Args:
+            img_size (int): the new image size
+
+        Returns:
+            None
+        """
         self.img_size = img_size
         self.input_tensor = self.__create_cppn_input()
 
