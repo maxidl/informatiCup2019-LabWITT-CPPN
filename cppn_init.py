@@ -100,7 +100,7 @@ def init_cppn_from_img(image: np.array, color: bool = True, sim_threshold: float
         if new_sim_score > sim_score:
             sim_score = new_sim_score
             optimization_steps += 1
-            print(iteration, sim_score)
+            # print(iteration, sim_score)
         else:
             cppn.set_weights(weights)  # if no improvement, back to old state
         iteration += 1
