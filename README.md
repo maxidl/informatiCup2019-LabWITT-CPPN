@@ -1,4 +1,4 @@
-# InformatiCup2019-LabWITT-CPPN
+# informatiCup2019-LabWITT-CPPN
 
 This repository is part of a submission for the [informatiCup 2019](http://www.informaticup.de) competition
 hosted by the [Gesellschaft für Informatik](https://gi.de).
@@ -9,6 +9,7 @@ for a given neural network based classification API.
 Our solution in this repository is designed for the following setting:
 * The attacker does not have access to the dataset used to train the API classifier 
 (and obviously does not have time to collect a similar dataset himself).
+* The API classifier only returns the top-5 results (class label and confidence)
 * The number of necessary API queries should be as low as possible.
 
 This implementation uses [CPPNs](https://en.wikipedia.org/wiki/Compositional_pattern-producing_network)
@@ -54,8 +55,7 @@ Visualized optimization process:
 
 The `examples/` directory contains some more examples, as well as high resolution versions of the adversarial images.
 
-## Usage
-
+## Usage Guide for Linux-based Plattforms
 
 #### Download
 
@@ -68,7 +68,8 @@ cd informatiCup2019-LabWITT-CPPN
 
 This repository includes a conda environment in `environment.yml` as well as a pip environment in `requirements.txt`,
  both including all the necessary dependencies. We used python version 3.7.2 and although our code might be compatible
-  with previous versions, we cannot guarantee downwards compatibility.
+  with previous versions, we cannot guarantee downwards compatibility. We highly recommend installing the
+   dependencies in a anconda environment or a python virtualenv.
  
 To create a conda environment from this file, simply run
 ```bash
@@ -122,7 +123,7 @@ images are misclassified by the API, thus leading to wrong target labels when us
     
     
 #### Overview of the Repository Contents
-* `/examples/` contains all the generated adversarial images, in both 64 x 64 and 2000 x 2000 pixel resolutions, as well
+* `examples/` contains all the generated adversarial images, in both 64 x 64 and 2000 x 2000 pixel resolutions, as well
 as corresponding `.gif` files visualizing the generation process.
 * `API_config.ini` is a config file for the APIs URL and the used key
 * `cppn_init.py` contains some experimental methods for initializing a CPPN based on image similarity measures. Currently in experimental phase.
@@ -131,6 +132,8 @@ as corresponding `.gif` files visualizing the generation process.
 * `util.py` contains all the utility functions, e.g. loading or saving image file and performing API requests.
 * `environment.yml` and `requirements.txt` contain all the dependencies installable using conda or pip respectively.
 * `test.py` includes some basic unit testing.
+* You can find images randomly sampled from the GTSRB dataset in the `test_images/` directory. These were used as input
+ images during our experiments.
 
 
 
