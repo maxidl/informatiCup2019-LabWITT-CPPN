@@ -1,22 +1,24 @@
 # InformatiCup2019-LabWITT-CPPN
 
-This repository is part of a solution for the [informatiCup 2019](http://www.informaticup.de) competition
+This repository is part of a submission for the [informatiCup 2019](http://www.informaticup.de) competition
 hosted by the [Gesellschaft für Informatik](https://gi.de).
 The [task](https://github.com/InformatiCup/InformatiCup2019/blob/master/Irrbilder.pdf) 
 of the 14th informatiCup is to generate [adversarial examples](https://blog.openai.com/adversarial-example-research/) 
 for a given neural network based classification API.
 
-Our solution in this repository tries to solve the use case:
+Our solution in this repository is designed for the following setting:
 * The attacker does not have access to the dataset used to train the API classifier 
-(and also does not have the time to collect a dataset himself)
-* He wants to keep the number of necessary API queries as low as possible
+(and obviously does not have time to collect a similar dataset himself).
+* The number of necessary API queries should be as low as possible.
 
 This implementation uses [CPPNs](https://en.wikipedia.org/wiki/Compositional_pattern-producing_network)
-(Compositional-Pattern-Producing-Networks) optimized with evolutionary strategies.
+(Compositional-Pattern-Producing-Networks) with dynamic net depths, which are optimized using evolutionary strategies.
 You can find a nice blog post explaining CPPNs [here](http://blog.otoro.net/2016/03/25/generating-abstract-patterns-with-tensorflow/).
 
+The theoretical background, implementation details and results are highlighted in our [short paper](LINK TO PAPER).
+
 ## Example Results
-Some Adversarial Images (hover to see the label, all >95% confidence):
+Some Adversarial Images (hover to see the label), all >95% confidence:
 
 ![](./examples/adversarial_Ende_aller_Streckenverbote_0.9562.png "Ende aller Streckenverbote")
 ![](./examples/adversarial_Doppelkurve_(zunachst_links)_0.9652.png "Doppelkurve (zunächst links)")
@@ -50,20 +52,24 @@ Visualized optimization process:
 ![](./examples/convergence_Ausschlielich_geradeaus_0.9833.gif "Ausschließlich geradeaus")
 
 
-See `examples/` for more.
+The `examples/` directory contains some more examples, as well as high resolution versions of the adversarial images.
 
 ## Usage
 
+
 #### Download
 
-Clone this repository:
+Clone this repository and cd into it:
 ```bash
-git clone https://github.com/MaximilianIdahl/InformatiCup2019-CPPN.git
-cd InformatiCup2019-CPPN
+git clone https://github.com/MaximilianIdahl/informatiCup2019-LabWITT-CPPN.git
+cd informatiCup2019-LabWITT-CPPN
 ```
 #### Dependencies
 
-This repository includes a conda environment in `environment.yml` as well as a pip environment in `requirements.txt`.
+This repository includes a conda environment in `environment.yml` as well as a pip environment in `requirements.txt`,
+ both including all the necessary dependencies. We used python version 3.7.2 and although our code might be compatible
+  with previous versions, we cannot guarantee downwards compatibility.
+ 
 To create a conda environment from this file, simply run
 ```bash
 conda env create -f environment.yml
@@ -113,6 +119,22 @@ images are misclassified by the API, thus leading to wrong target labels when us
     ```bash
     python test.py
     ```
+    
+    
+#### Overview of the Repository Contents
+* `/examples/` contains all the generated adversarial images, in both 64 x 64 and 2000 x 2000 pixel resolutions, as well
+as corresponding `.gif` files visualizing the generation process.
+* `API_config.ini` is a config file for the APIs URL and the used key
+* `cppn_init.py` contains some experimental methods for initializing a CPPN based on image similarity measures. Currently in experimental phase.
+* Our CPPN implementation written in PyTorch is contained in `cppn_model.py`.
+* `generate_adversarial.py` is the main script, which contains all the steps of the adversarial generation process.
+* `util.py` contains all the utility functions, e.g. loading or saving image file and performing API requests.
+* `environment.yml` and `requirements.txt` contain all the dependencies installable using conda or pip respectively.
+* `test.py` includes some basic unit testing.
+
+
+
+
 
 
 
