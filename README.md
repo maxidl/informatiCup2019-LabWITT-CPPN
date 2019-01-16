@@ -16,7 +16,7 @@ This implementation uses [CPPNs](https://en.wikipedia.org/wiki/Compositional_pat
 (Compositional-Pattern-Producing-Networks) with dynamic net depths, which are optimized using evolutionary strategies.
 You can find a nice blog post explaining CPPNs [here](http://blog.otoro.net/2016/03/25/generating-abstract-patterns-with-tensorflow/).
 
-The theoretical background, implementation details and results are highlighted in our [short paper](LINK TO PAPER).
+The theoretical background, implementation details and results are highlighted in our [short paper](http://jtheiner.de/a6sg26io/paper.pdf).
 
 ## Example Results
 Some Adversarial Images (hover to see the label), all >95% confidence:
