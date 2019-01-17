@@ -55,7 +55,7 @@ Visualized optimization process:
 
 The `examples/` directory contains some more examples, as well as high resolution versions of the adversarial images.
 
-## Usage Guide for Linux-based Plattforms
+## Usage Guide for Linux-based Platforms
 
 #### Download
 
@@ -92,7 +92,7 @@ KEY = <your-api-key>
     ```bash
     python generate_adversarial.py --input_img <some-image-file> --output_dir <some-directory>
     ```
-   where <some-image-file> is a image file representing the target class. 
+   where `<some-image-file>` is an image file representing the target class. 
    You can find some example images in the `test_images/` directory.
 * To generate an RGB image, include the `--color` flag:
     ```bash
