@@ -81,7 +81,7 @@ pip install -r requirements.txt
 ```
 
 #### Prerequisites
-Put your API key in the `API_config.ini file`.
+Put your API key in the `API_config.ini` file.
 ```ini
 [API]
 URL = https://phinau.de/trasi
