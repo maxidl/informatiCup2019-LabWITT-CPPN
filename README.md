@@ -75,6 +75,10 @@ To create a conda environment from this file, simply run
 ```bash
 conda env create -f environment.yml
 ```
+and activate the conda environment with
+```bash
+source activate infcup-cppn
+```
 or install the requirements via pip using
 ```bash
 pip install -r requirements.txt
